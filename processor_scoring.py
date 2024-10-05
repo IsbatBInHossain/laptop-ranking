@@ -52,7 +52,7 @@ def score_amd_processor(gen):
         if ryzen_match:
             try:
                 gen_num = int(ryzen_match.group(2)[0]) if len(ryzen_match.groups()) == 2 else int(ryzen_match.group(1)[0])
-                return min(gen_num * 1.375, 10)
+                return min(gen_num * 1.4375, 10)
             except ValueError:
                 continue
     return 0

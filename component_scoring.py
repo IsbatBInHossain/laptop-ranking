@@ -6,7 +6,7 @@ def score_ram(ram):
 
 # Storage scoring based on type and capacity
 def score_storage(storage_type, capacity):
-    score = 5 + (3 if 'ssd' in storage_type.lower() else 0) + min(capacity / 128, 5)
+    score = 2 + (3 if 'ssd' in storage_type.lower() else 0) + min(capacity / 128, 5)
     return min(score, 10)
 
 # Graphics scoring
@@ -28,3 +28,17 @@ def extract_screen_size(size_str):
 
 def score_screen(size_str):
     return min((extract_screen_size(size_str) / 2) + 2, 10)
+
+def score_price(price, tolerance, min_price, max_price):
+
+    normalized_price = (price - min_price) / (max_price - min_price)
+
+    if price <= tolerance:
+        # The lower the price compared to tolerance, the better the score
+        score = 10 * (1 - normalized_price)  # Score is better when price is lower
+    else:
+        # The higher the price compared to tolerance, the more penalty applied
+        penalty = (price - tolerance) / tolerance
+        score = max(0, 10 * (1 - normalized_price) - penalty * 10) 
+    # Ensure score is between 0 and 10
+    return max(0, min(10, score))
