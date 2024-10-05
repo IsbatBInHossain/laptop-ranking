@@ -27,7 +27,30 @@ git clone https://github.com/IsbatBInHossain/laptop-ranking.git
 cd laptop-ranking
 ```
 
-2. Install the required dependencies:
+2. Create an environment and activate it:
+
+   For Windows (Powershell):
+
+   ```bash
+   python -m venv env
+   .\env\Scripts\activate
+   ```
+
+   For Windows (bash):
+
+   ```bash
+   python -m venv env
+   source env/Scripts/activate
+   ```
+
+   For Linux/macOS:
+
+   ```bash
+   python3 -m venv env
+   source env/bin/activate
+   ```
+
+3. Install the required dependencies:
 
 ```bash
 pip install -r requirements.txt
